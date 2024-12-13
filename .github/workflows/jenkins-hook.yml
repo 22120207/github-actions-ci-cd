@@ -1,20 +1,20 @@
+name: Trigger Jenkins Job
+
 on:
   push:
     branches:
       - main
 
 jobs:
-  launch_jenkins_job:
-    name: Trigger Jenkins Job
+  trigger-jenkins:
     runs-on: ubuntu-latest
-    env:
-      JENKINS_HOST: https://dfef-115-78-131-128.ngrok-free.app/
-      JENKINS_JOB: github-actions-cd
     steps:
       - name: Trigger Jenkins Job
         uses: sbitio/trigger-jenkins-job@master
+        env:
+          JENKINS_HOST: https://dfef-115-78-131-128.ngrok-free.app
+          JENKINS_JOB: github-actions-cd
         with:
           JENKINS_USER: ${{ secrets.JENKINS_USER }}
           JENKINS_TOKEN: ${{ secrets.JENKINS_TOKEN }}
-          JENKINS_HOST: ${{ env.JENKINS_HOST }}
-          JENKINS_JOB: ${{ env.JENKINS_JOB }}
+          JENKINS_PARAMS: '{}'
