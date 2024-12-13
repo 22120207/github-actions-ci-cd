@@ -1,0 +1,41 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+<div class="container-fluid">
+    <h2>Create New Listing</h2>
+    <form action="{% url 'create_listing' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="InputTitle">Title</label>
+            <input type="text" class="form-control" id="InputTitle" name="title">
+        </div>
+        <div class="form-group">
+            <label for="InputDescription">Description</label>
+            <input type="text" class="form-control" id="InputDescription" name="description">
+        </div>
+        <div class="form-group">
+            <label for="InputImageUrl">Image Url</label>
+            <input type="text" class="form-control" id="InputImageUrl" name="image_url">
+        </div>
+        <div class="form-group"></div>
+        <label for="InputPrice">Price</label>
+        <input type="text" class="form-control" id="InputPrice" name="price">
+</div>
+<div class="form-group"></div>
+<label for="InputCategory">Category</label>
+<select class="form-control" id="FormControlSelectCategory" name="category">
+    <option value="place_holder">Your Pokemon Type</option>
+    {% for category in categories %}
+    <option value="{{ category.category_name }}">{{ category.category_name }}</option>
+    {% endfor %}
+</select>
+</div>
+{% if user.is_authenticated %}
+    <input type="hidden" name="owner" value="{{ user }}">
+{% else %}
+    <input type="hidden" name="no_owner" value="no_owner">
+{% endif %}
+<button type="submit" class="btn btn-primary mt-3">Create Listing</button>
+</form>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <h2 class="text-muted">Categories</h2>
+                <ul class="list-group">
+                    {% for category in categories %}
+                    <li class="list-group-item">{{ category }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <br>
+        <form action="{% url 'categories' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <h3 class="text-muted mt-3">Add New Category</h3>
+                <input type="text" class="form-control" id="InputCategory" name="category_name" placeholder="Your Category">
+            </div>
+            <button type="submit" class="btn btn-primary">Add Category</button>
+        </form>
+    </div>
+{% endblock %}

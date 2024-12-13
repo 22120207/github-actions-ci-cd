@@ -1,0 +1,13 @@
+body {
+    padding: 10px;
+}
+
+.form-control {
+    width: 50%;
+}
+
+.comment-container {
+    display: block;
+    align-items: center;
+}
+  
